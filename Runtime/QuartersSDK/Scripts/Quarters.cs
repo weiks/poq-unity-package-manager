@@ -123,7 +123,11 @@ namespace QuartersSDK {
             Debug.Log(url);
 
             //web view authentication
-            QuartersWebView.OpenURL(url, LinkType.External);
+            LinkType linkType = Application.platform == RuntimePlatform.WindowsEditor
+                ? LinkType.EditorExternal
+                : LinkType.External;
+            
+            QuartersWebView.OpenURL(url, linkType);
             QuartersWebView.OnDeepLink = delegate(QuartersLink link) {
                 if (link.QueryString.ContainsKey("code")) {
                     string code = link.QueryString["code"];
@@ -409,10 +413,8 @@ namespace QuartersSDK {
             string redirectSafeUrl = UnityWebRequest.EscapeURL(URL_SCHEME);
 
             string url = $"{BUY_URL}?redirect={redirectSafeUrl}";
-            Debug.Log(url);
 
             QuartersWebView.OpenURL(url, LinkType.External);
-            // QuartersWebView.OnDeepLink = DeepLink;
         }
 
         #endregion
