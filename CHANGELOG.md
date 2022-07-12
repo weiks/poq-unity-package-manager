@@ -26,3 +26,10 @@
 
 - iOS post build process fix to missing domain association config
 - Unity new Input system is now supported
+
+## 2.2.1 (2022-07-12)
+
+- Added [new QuartersSDK project (this project has all the logic](https://github.com/weiks/quarters-unity-sdk/tree/master/QuartersSDK)) reference 
+- Logging using dependency injection
+- Parameters vars
+- Unit testing for QuartersSDK (insiede new project)
