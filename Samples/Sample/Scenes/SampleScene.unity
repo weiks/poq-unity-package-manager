@@ -419,6 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -830,6 +831,10 @@ PrefabInstance:
     - target: {fileID: 3201448662090084819, guid: 7789543c591314ac08cad79cbf9c27e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3201448662090084819, guid: 7789543c591314ac08cad79cbf9c27e4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3201448662329252704, guid: 7789543c591314ac08cad79cbf9c27e4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2196,7 +2201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5785252395037182505, guid: 384fca06186d449d79eff75b26c50b6b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 154.6953
+      value: 0.00025485118
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 384fca06186d449d79eff75b26c50b6b, type: 3}

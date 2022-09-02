@@ -28,8 +28,13 @@
 - Unity new Input system is now supported
 
 ## 2.2.1 (2022-07-12)
-
-- Added [new QuartersSDK project (this project has all the logic](https://github.com/weiks/quarters-unity-sdk/tree/master/QuartersSDK)) reference 
+- Added [new QuartersSDK project (this project has all the logic](https://github.com/weiks/quarters-unity-sdk/tree/master/QuartersSDK)) reference
 - Logging using dependency injection
 - Parameters vars
-- Unit testing for QuartersSDK (insiede new project)
+- Unit testing for QuartersSDK (inside new project)
+
+## 2.2.2 (2022-08-31)
+- Added new test cases for QuartersSDK
+- Uploaded using last version of Unity Uploader
+
+
