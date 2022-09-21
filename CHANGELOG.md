@@ -36,5 +36,8 @@
 ## 2.2.2 (2022-08-31)
 - Added new test cases for QuartersSDK
 - Uploaded using last version of Unity Uploader
+  
+## 2.2.3 (2022-09-21)
+- Added APP name while calling VSP 
 
 
