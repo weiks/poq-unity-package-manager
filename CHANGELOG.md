@@ -26,3 +26,9 @@
 
 - iOS post build process fix to missing domain association config
 - Unity new Input system is now supported
+
+## 2.2.3 (2022-09-21)
+- Added APP name while calling VSP 
+
+## 2.3.2019 (2022-10-28)
+- Support for old Unity versions (if you are using Unity 2021 please use version 2.3.2021 available on master branch).
