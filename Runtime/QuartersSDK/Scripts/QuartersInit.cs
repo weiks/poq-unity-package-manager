@@ -12,6 +12,7 @@ namespace QuartersSDK {
 
         public string APP_KEY = "";
         public string APP_UNIQUE_IDENTIFIER = "";
+        public static string SDK_VERSION => "2.3.2019";
 
         public CurrencyConfig CurrencyConfig;
 
@@ -29,8 +30,6 @@ namespace QuartersSDK {
             None,
             Verbose
         }
-
-        public static string SDK_VERSION => "2.0.0";
 
         public string DASHBOARD_URL {
             get {
