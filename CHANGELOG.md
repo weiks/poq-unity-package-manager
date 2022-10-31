@@ -34,5 +34,7 @@
 ## 2.2.3 (2022-09-21)
 - Added APP name while calling VSP 
 
-## 2.3.0 (2022-10-24)
+## 2.3.2021 (2022-10-24)
 - Support for `netstandard 2.0`
+- Updated VSP log info
+- Version compatible with Unity 2021 and above ( if you are using old versions of Unity use the [release 2.3.2019](https://github.com/weiks/poq-unity-package-manager/releases/tag/2.3.2019) )
