@@ -16,9 +16,10 @@
            }
    
            public string AccessToken { get; set; } = "";
-   
-   
-           public bool DoesHaveRefreshToken => !string.IsNullOrEmpty(RefreshToken);
+           public string Code { get; set; } = "";
+
+
+        public bool DoesHaveRefreshToken => !string.IsNullOrEmpty(RefreshToken);
    
            public bool DoesHaveAccessToken => !string.IsNullOrEmpty(AccessToken);
    

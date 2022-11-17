@@ -10,9 +10,8 @@ namespace QuartersSDK {
         [Header("Your Quarters app:")] [Header("Copy your App ID and App Key from your Quarters dashboard")]
         public string APP_ID = "";
 
-        public string APP_KEY = "";
         public string APP_UNIQUE_IDENTIFIER = "";
-        public static string SDK_VERSION => "2.3.2019";
+        public static string SDK_VERSION => "3.0.2019";
 
         public CurrencyConfig CurrencyConfig;
 
@@ -62,7 +61,6 @@ namespace QuartersSDK {
             string error = "";
 
             if (string.IsNullOrEmpty(APP_ID)) LogError("Quarters App Id is empty");
-            if (string.IsNullOrEmpty(APP_KEY)) LogError("Quarters App key is empty");
 
 
             GameObject quarters = new GameObject("Quarters");
