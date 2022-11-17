@@ -38,3 +38,7 @@
 - Support for `netstandard 2.0`
 - Updated VSP log info
 - Version compatible with Unity 2021 and above ( if you are using old versions of Unity use the [release 2.3.2019](https://github.com/weiks/poq-unity-package-manager/releases/tag/2.3.2019) )
+
+## 3.0.2021 (2022-10-24)
+- Replaced parameter `APP_KEY` with `code`
+- Version compatible with Unity 2021 and above ( if you are using old versions of Unity use the [release 3.0.2019](https://github.com/weiks/poq-unity-package-manager/releases/tag/3.0.2019) )
