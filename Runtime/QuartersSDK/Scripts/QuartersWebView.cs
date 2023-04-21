@@ -90,6 +90,11 @@ namespace QuartersSDK
                 WebView.Show();
             }
             else if (linkType == LinkType.EditorExternal) {
+                Application.OpenURL(url);
+                renderEditorAuthorizationWindow = true;
+            }
+            else if (linkType == LinkType.IOSWebView)
+            {
 #if (UNITY_IOS || UNITY_TVOS)
                 gg.poq.unity.sdk.Runtime.SFSafariView.LaunchUrl(url);
 
