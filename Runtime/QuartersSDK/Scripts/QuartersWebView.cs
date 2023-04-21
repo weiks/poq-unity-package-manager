@@ -1,11 +1,12 @@
 ﻿using ImaginationOverflow.UniversalDeepLinking;
 #if UNITY_EDITOR
-    using UnityEditor; 
+using UnityEditor;
 #endif
 
 using UnityEngine;
 
-namespace QuartersSDK {
+namespace QuartersSDK
+{
     public class QuartersWebView : MonoBehaviour {
         public delegate void OnCancelledDelegate();
 
@@ -89,8 +90,13 @@ namespace QuartersSDK {
                 WebView.Show();
             }
             else if (linkType == LinkType.EditorExternal) {
+#if (UNITY_IOS || UNITY_TVOS)
+                gg.poq.unity.sdk.Runtime.SFSafariView.LaunchUrl(url);
+
+#else
                 Application.OpenURL(url);
                 renderEditorAuthorizationWindow = true;
+#endif
             }
             else {
                 //external authorisation
