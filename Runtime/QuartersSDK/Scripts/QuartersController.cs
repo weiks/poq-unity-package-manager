@@ -141,9 +141,13 @@ namespace QuartersSDK
                 Log(url);
 
                 //web view authentication
-                LinkType linkType = Application.platform == RuntimePlatform.WindowsEditor
-                    ? LinkType.EditorExternal
-                    : LinkType.External;
+                LinkType linkType;
+                if (QuartersInit.Instance.IsIOSSafariWebview)
+                    linkType = LinkType.IOSWebView;
+                else
+                    linkType = Application.platform == RuntimePlatform.WindowsEditor
+                        ? LinkType.EditorExternal
+                        : LinkType.External;
 
                 QuartersWebView.OpenURL(url, linkType);
                 QuartersWebView.OnDeepLink = delegate (QuartersLink link)
@@ -425,7 +429,8 @@ namespace QuartersSDK
             try
             {
                 VspAttribution.VspAttribution.SendAttributionEvent("BuyQuarters", Constants.VSP_POQ_COMPANY_NAME, $"{QuartersInit.Instance.APP_UNIQUE_IDENTIFIER} | {QuartersInit.Instance.APP_ID}");
-                QuartersWebView.OpenURL(_quarters.GetBuyQuartersUrl(), LinkType.External);
+                QuartersWebView.OpenURL(_quarters.GetBuyQuartersUrl(), 
+                                        QuartersInit.Instance.IsIOSSafariWebview ? LinkType.IOSWebView : LinkType.External);
             }
             catch (Exception ex)
             {

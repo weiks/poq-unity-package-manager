@@ -15,7 +15,9 @@ namespace QuartersSDK
         public string APP_ID = "";
 
         public string APP_UNIQUE_IDENTIFIER = "";
-        public static string SDK_VERSION => "3.0.2021";
+        public static string SDK_VERSION => "3.1.2021";
+
+        public bool IsIOSSafariWebview = false;
 
         public CurrencyConfig CurrencyConfig;
 
@@ -42,8 +44,8 @@ namespace QuartersSDK
             {
                 string suffix = string.IsNullOrEmpty(APP_ID) ? "new" : APP_ID;
 
-                if (Environment == Environment.production) return $"https://apps.pocketfulofquarters.com/apps/{suffix}";
-                if (Environment == Environment.sandbox) return $"https://sandbox.pocketfulofquarters.com/apps/{suffix}";
+                if (Environment == Environment.production) return $"https://www.poq.gg/manage_app/{suffix}";
+                if (Environment == Environment.sandbox) return $"https://quarters-arcade-dev.herokuapp.com/manage_app/{suffix}";
                 return null;
             }
         }
@@ -52,8 +54,8 @@ namespace QuartersSDK
         {
             get
             {
-                if (Environment == Environment.production) return "https://www.poq.gg/apps";
-                if (Environment == Environment.sandbox) return "https://s2w-dev-firebase.herokuapp.com/apps";
+                if (Environment == Environment.production) return "https://www.poq.gg/dev";
+                if (Environment == Environment.sandbox) return "https://quarters-arcade-dev.herokuapp.com/dev";
                 return null;
             }
         }

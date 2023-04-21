@@ -23,6 +23,7 @@ namespace QuartersSDK {
 
     public enum LinkType {
         WebView,
+        IOSWebView,
         External,
         EditorExternal
     }
