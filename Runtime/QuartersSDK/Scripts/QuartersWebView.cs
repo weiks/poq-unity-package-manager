@@ -1,4 +1,5 @@
-﻿using ImaginationOverflow.UniversalDeepLinking;
+﻿using gg.poq.unity.sdk.Runtime;
+using ImaginationOverflow.UniversalDeepLinking;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -96,8 +97,7 @@ namespace QuartersSDK
             else if (linkType == LinkType.IOSWebView)
             {
 #if (UNITY_IOS || UNITY_TVOS)
-                gg.poq.unity.sdk.Runtime.SFSafariView.LaunchUrl(url);
-
+                SFSafariView.LaunchUrl(url);
 #else
                 Application.OpenURL(url);
                 renderEditorAuthorizationWindow = true;
