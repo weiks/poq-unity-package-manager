@@ -141,9 +141,13 @@ namespace QuartersSDK {
             Log(url);
 
             //web view authentication
-            LinkType linkType = Application.platform == RuntimePlatform.WindowsEditor
-                ? LinkType.EditorExternal
-                : LinkType.External;
+            LinkType linkType;
+            if (QuartersInit.Instance.IsIOSSafariWebview)
+                linkType = LinkType.IOSWebView;
+            else
+                linkType = Application.platform == RuntimePlatform.WindowsEditor
+                    ? LinkType.EditorExternal
+                    : LinkType.External;
 
 
             QuartersWebView.OpenURL(url, linkType);

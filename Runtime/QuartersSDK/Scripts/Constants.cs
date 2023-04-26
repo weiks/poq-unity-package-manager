@@ -37,8 +37,10 @@ namespace QuartersSDK {
         wallet
     }
 
-    public enum LinkType {
+    public enum LinkType
+    {
         WebView,
+        IOSWebView,
         External,
         EditorExternal
     }

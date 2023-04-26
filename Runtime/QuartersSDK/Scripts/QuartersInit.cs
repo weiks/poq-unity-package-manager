@@ -7,11 +7,14 @@ namespace QuartersSDK {
         public static QuartersInit Instance;
         public static Action OnInitComplete;
 
-        [Header("Your Quarters app:")] [Header("Copy your App ID and App Key from your Quarters dashboard")]
+        [Header("Your Quarters app:")]
+        [Header("Copy your App ID from your Quarters dashboard")]
         public string APP_ID = "";
 
         public string APP_UNIQUE_IDENTIFIER = "";
-        public static string SDK_VERSION => "3.0.2019";
+        public static string SDK_VERSION => "3.1.2021";
+
+        public bool IsIOSSafariWebview = false;
 
         public CurrencyConfig CurrencyConfig;
 
@@ -25,29 +28,33 @@ namespace QuartersSDK {
 
         public Environment Environment = Environment.production;
         public LoggingType ConsoleLogging = LoggingType.None;
-        public enum LoggingType {
+        public enum LoggingType
+        {
             None,
             Verbose
         }
 
-        public string DASHBOARD_URL {
-            get {
+        public string DASHBOARD_URL
+        {
+            get
+            {
                 string suffix = string.IsNullOrEmpty(APP_ID) ? "new" : APP_ID;
 
-                if (Environment == Environment.production) return $"https://apps.pocketfulofquarters.com/apps/{suffix}";
-                if (Environment == Environment.sandbox) return $"https://sandbox.pocketfulofquarters.com/apps/{suffix}";
+                if (Environment == Environment.production) return $"https://www.poq.gg/manage_app/{suffix}";
+                if (Environment == Environment.sandbox) return $"https://quarters-arcade-dev.herokuapp.com/manage_app/{suffix}";
                 return null;
             }
         }
 
-        public string POQ_APPS_URL {
-            get {
-                if (Environment == Environment.production) return "https://www.poq.gg/apps";
-                if (Environment == Environment.sandbox) return "https://s2w-dev-firebase.herokuapp.com/apps";
+        public string POQ_APPS_URL
+        {
+            get
+            {
+                if (Environment == Environment.production) return "https://www.poq.gg/dev";
+                if (Environment == Environment.sandbox) return "https://quarters-arcade-dev.herokuapp.com/dev";
                 return null;
             }
         }
-
 
         private void Awake() {
             DontDestroyOnLoad(gameObject);

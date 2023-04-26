@@ -1,12 +1,15 @@
-﻿using ImaginationOverflow.UniversalDeepLinking;
+﻿using gg.poq.unity.sdk.Runtime;
+using ImaginationOverflow.UniversalDeepLinking;
 #if UNITY_EDITOR
-    using UnityEditor; 
+using UnityEditor;
 #endif
 
 using UnityEngine;
 
-namespace QuartersSDK {
-    public class QuartersWebView : MonoBehaviour {
+namespace QuartersSDK
+{
+    public class QuartersWebView : MonoBehaviour
+    {
         public delegate void OnCancelledDelegate();
 
         public delegate void OnDeepLinkDelegate(QuartersLink link);
@@ -24,17 +27,22 @@ namespace QuartersSDK {
 
         private UniWebView webView;
 
-        public UniWebView WebView {
-            get {
-                if (webView == null) {
+        public UniWebView WebView
+        {
+            get
+            {
+                if (webView == null)
+                {
                     webView = gameObject.AddComponent<UniWebView>();
                     webView.SetShowToolbar(false);
 
-                    if (Application.isEditor) {
+                    if (Application.isEditor)
+                    {
                         float editorScaleFactor = 0.5f;
                         webView.Frame = new Rect(0, 0, Screen.width * editorScaleFactor, Screen.height * editorScaleFactor);
                     }
-                    else {
+                    else
+                    {
                         //full screen
                         webView.Frame = new Rect(0, 0, Screen.width, Screen.height);
                     }
@@ -47,23 +55,27 @@ namespace QuartersSDK {
             set => webView = value;
         }
 
-        public void Init() {
+        public void Init()
+        {
             DeepLinkManager.Instance.LinkActivated += OnLinkActivated;
         }
 
 
-        private void OnDestroy() {
+        private void OnDestroy()
+        {
             DeepLinkManager.Instance.LinkActivated -= OnLinkActivated;
             if (webView != null) webView.OnPageStarted -= WebViewOnOnPageStarted;
         }
 
 
         //webview
-        private void WebViewOnOnPageStarted(UniWebView webview, string url) {
+        private void WebViewOnOnPageStarted(UniWebView webview, string url)
+        {
             Log($"WebViewOnOnPageStarted: {url}");
             QuartersLink link = QuartersLink.Create(url);
 
-            if (link.Uri.IsValidDeepLink()) {
+            if (link.Uri.IsValidDeepLink())
+            {
                 //deep link opened
                 WebView.Hide();
                 if (OnDeepLink != null) OnDeepLink(link);
@@ -72,35 +84,50 @@ namespace QuartersSDK {
 
 
         //external universal link
-        private void OnLinkActivated(LinkActivation linkActivation) {
+        private void OnLinkActivated(LinkActivation linkActivation)
+        {
             Log($"ApplicationOnDeepLinkActivated: {linkActivation.Uri} is valid deep link: {linkActivation.Uri.IsValidDeepLink()}");
             QuartersLink link = QuartersLink.Create(linkActivation.Uri);
 
             if (link.Uri.IsValidDeepLink()) //deep link opened
-                if (OnDeepLink != null)
-                    OnDeepLink(link);
+                OnDeepLink?.Invoke(link);
         }
 
 
-        public void OpenURL(string url, LinkType linkType) {
+        public void OpenURL(string url, LinkType linkType)
+        {
             if (Application.isEditor && Application.platform != RuntimePlatform.WindowsEditor) linkType = LinkType.WebView;
 
-            if (linkType == LinkType.WebView) {
+            if (linkType == LinkType.WebView)
+            {
                 WebView.Load(url);
                 WebView.Show();
             }
-            else if (linkType == LinkType.EditorExternal) {
+            else if (linkType == LinkType.EditorExternal)
+            {
                 Application.OpenURL(url);
                 renderEditorAuthorizationWindow = true;
             }
-            else {
+            else if (linkType == LinkType.IOSWebView)
+            {
+
+#if (UNITY_IOS || UNITY_TVOS)
+                SFSafariView.LaunchUrl(url);
+#else
+                Application.OpenURL(url);
+                renderEditorAuthorizationWindow = true;
+#endif
+            }
+            else
+            {
                 //external authorisation
                 Application.OpenURL(url);
             }
         }
-        
+
 #if UNITY_EDITOR
-        private void OnGUI() {
+        private void OnGUI()
+        {
             if (!renderEditorAuthorizationWindow) return;
 
             GUI.color = backgroundColor;
@@ -108,7 +135,8 @@ namespace QuartersSDK {
         }
 
 
-        private void DrawEditorAuthWindow(int windowID) {
+        private void DrawEditorAuthWindow(int windowID)
+        {
             EditorGUILayout.BeginVertical();
             GUI.color = Color.white;
 
@@ -120,13 +148,15 @@ namespace QuartersSDK {
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("Cancel")) renderEditorAuthorizationWindow = false;
 
-            if (GUILayout.Button("Paste and Authorize")) {
+            if (GUILayout.Button("Paste and Authorize"))
+            {
                 editorAuthorizationUrl = EditorGUIUtility.systemCopyBuffer;
                 AuthorizeEditor();
                 renderEditorAuthorizationWindow = false;
             }
 
-            if (GUILayout.Button("Authorize")) {
+            if (GUILayout.Button("Authorize"))
+            {
                 AuthorizeEditor();
                 renderEditorAuthorizationWindow = false;
             }
@@ -135,20 +165,25 @@ namespace QuartersSDK {
             EditorGUILayout.EndVertical();
         }
 
-        private void AuthorizeEditor() {
+        private void AuthorizeEditor()
+        {
             QuartersLink link = QuartersLink.Create(editorAuthorizationUrl);
             if (OnDeepLink != null) OnDeepLink(link);
         }
 #endif
-        
-        private void Log(string message) {
-            if (QuartersInit.Instance.ConsoleLogging == QuartersInit.LoggingType.Verbose) {
+
+        private void Log(string message)
+        {
+            if (QuartersInit.Instance.ConsoleLogging == QuartersInit.LoggingType.Verbose)
+            {
                 Debug.Log(message);
             }
         }
-        
-        private void LogError(string message) {
-            if (QuartersInit.Instance.ConsoleLogging == QuartersInit.LoggingType.Verbose) {
+
+        private void LogError(string message)
+        {
+            if (QuartersInit.Instance.ConsoleLogging == QuartersInit.LoggingType.Verbose)
+            {
                 Debug.LogError(message);
             }
         }

@@ -4,7 +4,6 @@
 
 - Rewrite of the SDK 1.0.0
 
-
 ## 2.0.1 (2022-05-30)
 
 - Bug fixes
@@ -28,7 +27,19 @@
 - Unity new Input system is now supported
 
 ## 2.2.3 (2022-09-21)
-- Added APP name while calling VSP 
+
+- Added APP name while calling VSP
 
 ## 2.3.2019 (2022-10-28)
+
 - Support for old Unity versions (if you are using Unity 2021 please use version 2.3.2021 available on master branch).
+
+## 3.0.2019 (2022-10-24)
+
+- Replaced parameter `APP_KEY` with `code`
+- Version compatible with Unity 2021 and above ( if you are using old versions of Unity use the [release 3.0.2019](https://github.com/weiks/poq-unity-package-manager/releases/tag/3.0.2019) )
+
+## 3.1.2019 (2022-04-21)
+
+- Updated links from `QuartersInit` (`App Dashboard` and `My apps`)
+- Added Safari WebView support for iOS.
