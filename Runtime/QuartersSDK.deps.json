@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "QuartersSDK/3.0": {
+      "QuartersSDK/4.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration": "6.0.1",
           "Microsoft.Extensions.Configuration.Json": "6.0.0",
@@ -421,7 +421,7 @@
     }
   },
   "libraries": {
-    "QuartersSDK/3.0": {
+    "QuartersSDK/4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

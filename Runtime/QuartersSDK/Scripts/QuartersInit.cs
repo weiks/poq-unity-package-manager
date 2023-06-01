@@ -15,7 +15,7 @@ namespace QuartersSDK
         public string APP_ID = "";
 
         public string APP_UNIQUE_IDENTIFIER = "";
-        public static string SDK_VERSION => "3.1.2021";
+        public static string SDK_VERSION => "4.0.2021";
 
         public bool IsIOSSafariWebview = false;
 
