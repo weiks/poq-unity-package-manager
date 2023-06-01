@@ -48,9 +48,14 @@ namespace QuartersSDK {
         }
 
         /// <summary>
+        /// Gets the base for old API endpoint
+        /// </summary>
+        public string API_URL_V1 => $"{BASE_URL}/api/v1";
+
+        /// <summary>
         /// Gets the base API endpoint
         /// </summary>
-        public string API_URL => $"{BASE_URL}/api/v1";
+        public string API_URL => $"{BASE_URL}/api/v2";
 
         /// <summary>
         /// Gets the buy endpoint
@@ -400,7 +405,7 @@ namespace QuartersSDK {
                 yield break;
             }
 
-            string url = API_URL + "/transactions";
+            string url = API_URL_V1 + "/transactions";
             Log("Transaction url: " + url);
 
             Dictionary<string, object> postData = new Dictionary<string, object>();
