@@ -270,6 +270,10 @@ namespace QuartersSDK
                     OnError?.Invoke(response.ErrorResponse.ErrorDescription);
                 }
             }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
+            }
             catch (Exception ex)
             {
                 LogError($"Message: {ex.Message} | Description: {ex.InnerException}");
@@ -310,6 +314,11 @@ namespace QuartersSDK
                     OnFailed?.Invoke(response.ErrorResponse.ErrorDescription);
                 }
             }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
+                OnFailed?.Invoke(ex.ErrorMessage);
+            }
             catch (Exception ex)
             {
                 LogError(ex.Message);
@@ -348,6 +357,11 @@ namespace QuartersSDK
                     OnSuccess(CurrentUser);
                 }
             }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
+                OnFailed?.Invoke(ex.ErrorMessage);
+            }
             catch (Exception ex)
             {
                 LogError($"Message: {ex.Message} | Description: {ex.StackTrace}");
@@ -368,6 +382,11 @@ namespace QuartersSDK
                 CurrentUser.Balance = balance;
                 OnBalanceUpdated?.Invoke(CurrentUser.Balance);
                 OnSuccess(CurrentUser.Balance);
+            }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
+                OnFailed?.Invoke(ex.ErrorMessage);
             }
             catch (Exception ex)
             {
@@ -413,6 +432,11 @@ namespace QuartersSDK
                     OnFailed?.Invoke(response.ErrorResponse.ErrorDescription);
                 }
             }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
+                OnFailed?.Invoke(ex.ErrorMessage);
+            }
             catch (Exception ex)
             {
                 LogError($"Message: {ex.Message} | Description: {ex.InnerException}");
@@ -431,6 +455,10 @@ namespace QuartersSDK
                 VspAttribution.VspAttribution.SendAttributionEvent("BuyQuarters", Constants.VSP_POQ_COMPANY_NAME, $"{QuartersInit.Instance.APP_UNIQUE_IDENTIFIER} | {QuartersInit.Instance.APP_ID}");
                 QuartersWebView.OpenURL(_quarters.GetBuyQuartersUrl(), 
                                         QuartersInit.Instance.IsIOSSafariWebview ? LinkType.IOSWebView : LinkType.External);
+            }
+            catch (Error ex)
+            {
+                LogError($"Message: {ex.ErrorMessage} | Description: {ex.ErrorDescription}");
             }
             catch (Exception ex)
             {
