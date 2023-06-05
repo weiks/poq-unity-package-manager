@@ -48,14 +48,9 @@ namespace QuartersSDK {
         }
 
         /// <summary>
-        /// Gets the base for old API endpoint
-        /// </summary>
-        public string API_URL_V1 => $"{BASE_URL}/api/v1";
-
-        /// <summary>
         /// Gets the base API endpoint
         /// </summary>
-        public string API_URL => $"{BASE_URL}/api/v2";
+        public string API_URL => $"{BASE_URL}/api/v2/oauth2";
 
         /// <summary>
         /// Gets the buy endpoint
@@ -399,21 +394,25 @@ namespace QuartersSDK {
         public IEnumerator MakeTransaction(long coinsQuantity, string description, Action OnSuccess, Action<string> OnFailed) {
             Log($"MakeTransaction with quantity: {coinsQuantity}");
 
+            if (coinsQuantity >= 0) { 
+                LogError("To debit quarters coinsQuantity must be a negative value. If you want to receive Quarters from a wallet contact us on Discord channel #api-and-integration.");
+                OnFailed("To debit quarters coinsQuantity must be a negative value. If you want to receive Quarters from a wallet contact us on Discord channel #api-and-integration.");
+                yield break;
+            }
             if (!session.DoesHaveRefreshToken) {
                 LogError("Missing refresh token");
                 OnFailed("Missing refresh token");
                 yield break;
             }
 
-            string url = API_URL_V1 + "/transactions";
+            string url = API_URL + "/transactions";
             Log("Transaction url: " + url);
 
             Dictionary<string, object> postData = new Dictionary<string, object>();
-            postData.Add("creditUser", coinsQuantity);
+            postData.Add("amount", Math.Abs(coinsQuantity));
             postData.Add("description", description);
 
             string json = JsonConvert.SerializeObject(postData);
-
 
             UnityWebRequest request = new UnityWebRequest(url, "POST");
             byte[] jsonToSend = new UTF8Encoding().GetBytes(json);
