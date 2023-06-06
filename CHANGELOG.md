@@ -57,3 +57,7 @@
 
 - Updated links from `QuartersInit` (`App Dashboard` and `My apps`)
 - Added Safari WebView support for iOS.
+
+## 4.0.2021 (2022-06-06)
+
+- Updated API version to v2
